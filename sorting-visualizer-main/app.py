@@ -252,7 +252,7 @@ def bucket_insertion(element):
     for sorted in range(1, len(element)):
         insert = element[sorted]    # taking a sorted initial index
         j = sorted - 1
-        while j >= 0 and element[j] < insert:   #checking if index is less then the sorted key
+        while j >= 0 and element[j] > insert:   #checking if index is less then the sorted key
             element[j + 1] = element[j]         # swapping
             j -= 1                              # the
         element[j + 1] = insert                 # indexes

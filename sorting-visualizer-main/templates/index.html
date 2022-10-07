@@ -84,19 +84,19 @@
             });
         });
 
-        const width = 830, height = 830
+        const width = 1380, height = 505
         function setup(){
             createCanvas(width, height).parent("#main")
-            insBuffer=createGraphics(200, 200)
-            selBuffer=createGraphics(200, 200)
-            quickBuffer=createGraphics(200, 200)
-            heapBuffer=createGraphics(200, 200)
-            radBuffer=createGraphics(200, 200)
-            bubbleBuffer=createGraphics(200, 200)
-            mergeBuffer=createGraphics(200, 200)
-            bucketBuffer=createGraphics(200, 200)
+            insBuffer=createGraphics(240, 250)
+            selBuffer=createGraphics(240, 250)
+            quickBuffer=createGraphics(240, 250)
+            heapBuffer=createGraphics(240, 250)
+            radBuffer=createGraphics(240, 250)
+            bubbleBuffer=createGraphics(240, 250)
+            mergeBuffer=createGraphics(240, 250)
+            bucketBuffer=createGraphics(240, 250)
             //to be implemented
-            countBuffer=createGraphics(200, 200)
+            countBuffer=createGraphics(230, 250)
             
         }   
         
@@ -104,16 +104,16 @@
             let lineWidth, noOfElements = insArr.length
             lineWidth = (200 / noOfElements)
 
-            insBuffer.background(248, 237, 227)
-            selBuffer.background(223, 211, 195)
+            bubbleBuffer.background(248, 237, 227)
+            insBuffer.background(223, 211, 195)
+            selBuffer.background(248, 237, 227)
+            mergeBuffer.background(223, 211, 195)
             quickBuffer.background(248, 237, 227)
             heapBuffer.background(223, 211, 195)
             radBuffer.background(248, 237, 227)
-            bubbleBuffer.background(223, 211, 195)
-            mergeBuffer.background(223, 211, 195)
             bucketBuffer.background(223, 211, 195)
             //to be implemented
-            countBuffer.background(223, 211, 195)
+            countBuffer.background(248, 237, 227)
             
             
             let max=Math.max(...insArr)
@@ -123,13 +123,25 @@
                 insBuffer.textStyle(BOLD);
                 insBuffer.text('Insertion Sort', 55, 20).fill(103, 71, 71)
 
+                quickBuffer.textSize(15);
+                quickBuffer.textStyle(BOLD);
+                quickBuffer.text('Quick Sort', 55, 20).fill(103, 71, 71)
+
+                radBuffer.textSize(15);
+                radBuffer.textStyle(BOLD);
+                radBuffer.text('Radix Sort', 55, 20).fill(103, 71, 71)
+
+                heapBuffer.textSize(15);
+                heapBuffer.textStyle(BOLD);
+                heapBuffer.text('Heap Sort', 55, 20).fill(103, 71, 71)
+
                 if (i===step)insBuffer.fill(255, 110, 131)
                 else if(i==compare) insBuffer.fill(125, 110, 131)
                 else insBuffer.fill(125, 110, 255)
-                
+               
                 selBuffer.textSize(15);
                 selBuffer.textStyle(BOLD);
-                selBuffer.text('Selection Sort', 55, 20).fill(103, 71, 71)
+                selBuffer.text('Selection Sort', 55, 20).fill(103, 71, 71);
                 if (i===step1)selBuffer.fill(255, 110, 131)
                 else if(i==compare1) selBuffer.fill(125, 110, 131)
                 else selBuffer.fill(125, 110, 255)
@@ -141,63 +153,77 @@
                 mergeBuffer.fill(125, 110, 131)
                 bucketBuffer.fill(125, 110, 131)
 
-                insBuffer.rect((i*lineWidth),200, lineWidth, -(insArr[i]/max)*160)
-                selBuffer.rect((i*lineWidth),200, lineWidth, -(selArr[i]/max)*160)
-                quickBuffer.rect((i*lineWidth),200, lineWidth, -(quickArr[i]/max)*160)
-                heapBuffer.rect((i*lineWidth),200, lineWidth, -(heapArr[i]/max)*160)
-                radBuffer.rect((i*lineWidth), 200, lineWidth, -(radixArr[i]/max)*160)
+                insBuffer.rect((i*lineWidth),250, lineWidth, -(insArr[i]/max)*200)
+                selBuffer.rect((i*lineWidth),250, lineWidth, -(selArr[i]/max)*200)
+                
+                if(i%2==0) quickBuffer.fill(0, 0, 0)
+                else quickBuffer.fill(0, 128, 128)
+                quickBuffer.rect((i*lineWidth),250, lineWidth, -(quickArr[i]/max)*200)
+
+                if(i%2==0) heapBuffer.fill(255, 87, 51)
+                else heapBuffer.fill(255, 251, 219)
+                heapBuffer.rect((i*lineWidth),250, lineWidth, -(heapArr[i]/max)*200)
+
+                if(i%2==0) radBuffer.fill(119, 197, 147)
+                else radBuffer.fill(237, 53, 114)
+                radBuffer.rect((i*lineWidth), 250, lineWidth, -(radixArr[i]/max)*200)
                 
 
                 bubbleBuffer.textSize(15);
                 bubbleBuffer.textStyle(BOLD);
-                bubbleBuffer.text('Bubble Sort', 55, 20).fill(0, 255, 0)
+                bubbleBuffer.text('Bubble Sort', 55, 20).fill(103, 71, 71)
 
                 if (i%2==0)bubbleBuffer.fill(0, 0, 0)
                 else bubbleBuffer.fill(210, 4, 45)
 
-                bubbleBuffer.rect((i*lineWidth), 200, lineWidth, -(bubArr[i]/max)*160)
+                bubbleBuffer.rect((i*lineWidth), 250, lineWidth, -(bubArr[i]/max)*200)
 
                 mergeBuffer.textSize(15);
                 mergeBuffer.textStyle(BOLD);
-                mergeBuffer.text('Merge Sort', 55, 20).fill(0, 255, 0)
+                mergeBuffer.text('Merge Sort', 55, 20).fill(0, 255, 0);
 
                 if (i%2==0)mergeBuffer.fill(21, 21, 21)
                 else mergeBuffer.fill(255, 255, 0)
                 
-                mergeBuffer.rect((i*lineWidth), 200, lineWidth, -(mergeArr[i]/max)*160)
+                mergeBuffer.rect((i*lineWidth), 250, lineWidth, -(mergeArr[i]/max)*200)
                 
-                bucketBuffer.textSize(15)
-                bucketBuffer.textStyle(BOLD)
-                bucketBuffer.text('Bucket Sort', 55, 20).fill(103, 71, 71)
+                bucketBuffer.textSize(15);
+                bucketBuffer.textStyle(BOLD);
+                bucketBuffer.text('Bucket Sort', 55, 20).fill(103, 71, 71);
                 
                 if (i%2 == 0)bucketBuffer.fill(0, 0, 0)
                 else bucketBuffer.fill(0, 255, 0)
-                bucketBuffer.rect((i*lineWidth), 200, lineWidth, -(bucketArr[i]/max)*160)
+                bucketBuffer.rect((i*lineWidth), 250, lineWidth, -(bucketArr[i]/max)*200)
             }
 
-            image(insBuffer, 0, 0)
-            image(selBuffer, 210, 0)
-            image(quickBuffer, 210, 210)
-            image(heapBuffer, 0, 210)
-            image(radBuffer, 420, 0)
-            image(bubbleBuffer, 210, 420)
-            image(mergeBuffer, 0, 420)
-            image(bucketBuffer, 420, 420)
+            image(bubbleBuffer, 30, 0)
+            image(insBuffer, 280, 0)
+            image(selBuffer, 530, 0)
+            image(mergeBuffer, 780, 0)
+            image(quickBuffer, 1030, 0)
+            image(heapBuffer, 150, 260)
+            image(radBuffer, 400, 260)
+            image(bucketBuffer, 650, 260)
             //to be implemented
-            image(countBuffer, 420, 210)
+            image(countBuffer, 900, 260)
             
             
 
         }
     </script>
 </head>
-<body style="background-color:#7D6E83; ">
+<body style="background-color: #4158D0;
+background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);">
+    <p style="color:darkred; font-size:large; text-align:center; font-weight:bolder; margin-top:0%"> Visualize Sorting Algorithms</p>
     <div id="main">
         <form id="controls" method="POST" action='#'>
-            <input type="number" id="minim" placeholder="Minimum">
-            <input type="number" id="maxim" placeholder="Maximum">
-            <input type="text" id="speedo" placeholder="Delay (s)">
-            <input type="submit" value="Start">
+            <input type="number" id="minim" placeholder="Minimum" required style="margin-left: 2%; margin-bottom: 1%; border-radius: 2px; font-size:small;">
+            <input type="number" id="maxim" placeholder="Maximum" required style="margin-left: 28%; margin-bottom: 1%; border-radius: 2px; font-size:small;">
+            <input type="text" id="speedo" placeholder="Delay (s)" required style="margin-left: 25%; margin-bottom: 1%; border-radius: 2px; font-size:small;">
+            <input type="submit" value="Visualize" style="display:grid ; margin-left: 46%; margin-bottom: 0.5%; border-color: yellow; color: yellow; background-color: black; font-size: large;">
+            
+            
+              
         </form>
     </div>
 </body>
